@@ -7,4 +7,6 @@ I'll be learning:
 - How to manage the app behaviour with JS
   - Functions interacting with the DOM (Document Object Model)
   - Interactivity with event listeners
-  - Web storage for local storage and persistence
+  - Web storage for local/session storage and persistence
+	- session storage will persist in several tabs during the same session
+	- local storage will persist even if we reopen the browser

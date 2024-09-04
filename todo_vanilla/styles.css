@@ -38,3 +38,7 @@ li { /* this gives style to each item in the list */
 }
 /* to style we will have to add an idetificator: class or id
 and  use curly brackets to add the desired properties */
+
+.completed {
+	text-decoration: line-through;
+}

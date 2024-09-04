@@ -11,6 +11,24 @@ const app = { /* object to group all the app related variables */
 	taskList: taskList,
 	newTaskInput: newTaskInput,
 }
+
+function saveTaskToLocalStorage(task) {
+/* on localStorage we can only store text, so 
+JSON.stringify converts into the tasks into a string */
+	localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+/* this function will be executed when the window is loaded */
+window.onload = function loadTasksFromLocalStorage() { 
+    const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (storedTasks) {
+        storedTasks.forEach(function(task) {
+            app.tasks.push(task); // Update the global tasks array
+            addTaskToList(task, taskList);
+        });
+    }
+}
+
+
 /* this function takes a title and a bool and returns an
 object which will represent a task with the embracketed params  */
 function createTask(tittle, isCompleted = false) {
@@ -33,6 +51,7 @@ function addTask(app) {
 	app.tasks.push(newTask); /* adds a new item to the tasks array */
 
 	addTaskToList(newTask, app.taskList);
+	saveTaskToLocalStorage(app.tasks);
 	app.newTaskInput.value = ''; /* cleans the input after click in the button */
 }
 
@@ -45,6 +64,7 @@ function createTaskElement(task) {
 	taskCheckBox.addEventListener('change', function(event) {
 		task.isCompleted = event.target.checked;
 		taskText.classList.toggle("completed", task.isCompleted);
+		saveTaskToLocalStorage(app.tasks);
 	});
 	/* with classList we can acced to the css class of the taskText */
 	/* toggle is a method to add or remove a class from an elements class list */
@@ -52,12 +72,15 @@ function createTaskElement(task) {
 	taskText.textContent = task.tittle;
 	taskText.classList.toggle('completed', task.isCompleted);
 
-	taskDeleteButton = document.createElement('button');
+	const taskDeleteButton = document.createElement('button');
 	taskDeleteButton.textContent = 'task\'nt';
 	taskDeleteButton.addEventListener('click', function() {
-/* 		taskElement.remove();
-		const taskIndex = app.tasks.indexOf(task);
-		app.tasks.splice(taskIndex, 1); */
+		taskElement.remove(); /* removes the task from the DOM */
+		const taskIndex = app.tasks.indexOf(task); /* gets the index of the task on the array */
+		if (taskIndex > -1)
+			app.tasks.splice(taskIndex, 1); /* removes the task from the array */
+	/* splice(index, n) removes from  index a n number of elements*/
+		saveTaskToLocalStorage(app.tasks);
 	});
 	taskElement.appendChild(taskCheckBox);
 	taskElement.appendChild(taskText);
