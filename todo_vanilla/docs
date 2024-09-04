@@ -1,0 +1,10 @@
+This is a pure vanilla todo app (I'm not using Bootstrap in this case).
+I'll be learning:
+- How to structure a basic webpage with HTML
+  - Items to input data (forms, buttons)
+- How to style with CSS
+  - Using element selectors (IDs and classes)
+- How to manage the app behaviour with JS
+  - Functions interacting with the DOM (Document Object Model)
+  - Interactivity with event listeners
+  - Web storage for local storage and persistence

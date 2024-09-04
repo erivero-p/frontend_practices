@@ -1,0 +1,40 @@
+body {
+	background-color: #f7e2e2;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #430606;
+	margin: 1 rem;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+}
+
+input, button {
+	font-size: 16px;
+	padding: 8px;
+	border: none;
+	border-radius: 4px;
+}
+button {
+	background-color: #e18686;
+	cursor: pointer;
+}
+ul { /* this gives style to the whole list */
+	list-style-type: none; /* this removes the bullet points */
+	padding: 0;
+}
+li { /* this gives style to each item in the list */
+	background-color: #f7e2e2;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 4px;
+}
+/* to style we will have to add an idetificator: class or id
+and  use curly brackets to add the desired properties */
