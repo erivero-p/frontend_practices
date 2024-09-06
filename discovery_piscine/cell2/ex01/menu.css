@@ -1,0 +1,43 @@
+html, body {
+    background-color: #f0f0f0; /* Light grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+}
+h1 {
+    margin-bottom: 20px;
+    color: rgb(46, 59, 70);
+}
+.sncf {
+    background-color: #ffffff; /* White background for the content */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: larger;
+}
+
+ul {
+    list-style-type: none; /* Remove the bullet points */
+    padding: 0;
+}
+
+details {
+    margin-bottom: 10px;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgb(46, 59, 70);
+    color: white;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+li {
+    margin-left: 20px;
+}
