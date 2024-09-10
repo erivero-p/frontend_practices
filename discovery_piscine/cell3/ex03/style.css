@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center items vertically */
+    height: 100vh; /* Ensure the container takes up the full height of the window */
+    flex-direction: column; /* Arrange children in a column */
+}
+
+button {
+    font-size: large;
+    background-color: #b0fcf9;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 1rem; /* Add some space below the button */
+}
+
+#ft_list {
+    display: flex; /* Use flexbox for the list container */
+    flex-direction: column; /* Arrange list items in a column */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    background-color: #d1fcfb;
+    border-radius: 5px;
+}
