@@ -5,7 +5,7 @@ body {
 
 }
 
-.content-wrapper {
+#home, #section {
     background-color: rgba(255, 255, 255, 0.8);
     display: fixed;
     padding: 20px;
@@ -17,6 +17,10 @@ body {
     overflow-y: auto; /* Allow vertical scrolling if content overflows */
     background-color:     #ffffff62;
 }
+
+/* #profile {
+    
+} */
 
 .bg-custom1 {
     background-color:     #aed4db;
