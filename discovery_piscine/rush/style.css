@@ -5,7 +5,7 @@ body {
 
 }
 
-#home, #section {
+#home, .section {
     background-color: rgba(255, 255, 255, 0.8);
     display: fixed;
     padding: 20px;
@@ -16,11 +16,8 @@ body {
     max-height: 80vh; /* Set a maximum height */
     overflow-y: auto; /* Allow vertical scrolling if content overflows */
     background-color:     #ffffff62;
+    margin-bottom: 20px;
 }
-
-/* #profile {
-    
-} */
 
 .bg-custom1 {
     background-color:     #aed4db;
@@ -29,7 +26,8 @@ body {
     background-color:     #f8beb0;
 }
 .bg-custom3 {
-    background-color:     #8ffffb;
+    background-color:     #f9b6a565;
+
 }
 .btn-custom {
     background-color:     #8ffffb;

@@ -9,16 +9,23 @@
 </head>
 <body>
     <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-custom2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-custom3">
         <div class="container-fluid">
-            <button class="btn btn-light" onclick="showHome()">Home</button>
-
-               
-            
+          <a class="navbar-brand" href="index.html">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="#exp">Experience</a>
+              <a class="nav-link" href="#contact">Contact</a>
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">coming soon</a>
+            </div>
+          </div>
         </div>
-    </nav>
+      </nav>
 
-    <div class="container mt-3" id="section">
+    <div class="container mt-3 section">
         <!-- CV Sections -->
         <div class="row mt-5 justify-content-center">
             <div class="col-auto">
@@ -29,30 +36,40 @@
         <p class="text-center">Im trying</p>
     </div>
 
-    <div class="container mt-5" id="section">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="container mt-5 section">
+        <div class="row" id="exp">
+            <div class="col-md-6" >
                 <h2 class="text-center">Experience</h2>
                 <ul>
                     <li>Job 1: Description of job 1</li>
                     <li>Job 2: Description of job 2</li>
                     <li>Job 3: Description of job 3</li>
+                    <li>Job 3: Description of job 4</li>
+                    <li>Job 3: Description of job 5</li>
+                    <li>Job 3: Description of job 6</li>
+                    <li>Job 3: Description of job 7</li>
+                    <li>Job 3: Description of job 8</li>
                     <!-- Add more job experiences as needed -->
                 </ul>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" >
                 <h2 class="text-center">Skills</h2>
                 <ul>
                     <li>Skill 1: Description of skill 1</li>
                     <li>Skill 2: Description of skill 2</li>
                     <li>Skill 3: Description of skill 3</li>
+                    <li>Skill 4: Description of skill 4</li>
+                    <li>Skill 5: Description of skill 5</li>
+                    <li>Skill 6: Description of skill 6</li>
+                    <li>Skill 7: Description of skill 7</li>
+                    <li>Skill 7: Description of skill 8</li>
                     <!-- Add more skills as needed -->
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container mt-5" id="section">
-        <div class="row">
+    <div class="container mt-5 section">
+        <div class="row" id="contact">
             <h2 class="text-center">Contact</h2>
             <div class="col-md-6">
                 <ul class="list-unstyled">
@@ -69,6 +86,7 @@
         </div>
     </div>
     </div>
+
     <!-- Bootstrap JS -->
     <script src="app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
