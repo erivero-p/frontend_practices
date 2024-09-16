@@ -1,0 +1,31 @@
+:root { /* here I can put body too */
+    --btn-red: #ff5733;
+    --dark: #31656e;
+    --light: #f4f4f4;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--dark);
+    color: var(--dark);
+    margin: 0;
+    padding: 0;
+}
+.bg-custom1 {
+    background-color: #aed4db;
+}
+.bgc-dark {
+    
+    background-color: #31656e;
+}
+
+.btn-custom {
+    background-color: transparent;
+    border: 2px solid var(--btn-red);
+    color:var(--btn-red);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-custom:hover { /* change button colour when mouse is on it */
+background-color: var(--btn-red);
+color: white;
+}
