@@ -18,14 +18,26 @@ body {
     background-color: #31656e;
 }
 
-.btn-custom {
+.add {
     background-color: transparent;
     border: 2px solid var(--btn-red);
     color:var(--btn-red);
     transition: background-color 0.3s, color 0.3s;
 }
 
-.btn-custom:hover { /* change button colour when mouse is on it */
+.add:hover { /* change button colour when mouse is on it */
+background-color: var(--btn-red);
+color: white;
+}
+.delete {
+    background-color: transparent;
+    border: 2px solid var(--btn-red);
+    color:var(--btn-red);
+    transition: background-color 0.3s, color 0.3s;
+    display: none;
+}
+
+.delete:hover { /* change button colour when mouse is on it */
 background-color: var(--btn-red);
 color: white;
 }

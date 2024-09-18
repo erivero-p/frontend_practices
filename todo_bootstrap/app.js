@@ -4,6 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const taskInput = document.getElementById('todo-input');
     const taskList = document.querySelector('.list-group');
 
+    // Function to toggle delete button visibility
+    function toggleDeleteButton() {
+        if (taskList.children.length > 0) {
+            deleteButton.style.display = 'block';
+        } else {
+            deleteButton.style.display = 'none';
+        }
+    }
+
+    // Initially hide the delete button
+    deleteButton.style.display = 'none';
+
     // Function to add a new task
     addButton.addEventListener('click', function() {
         const taskText = taskInput.value.trim();
@@ -18,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             taskList.appendChild(newTask);
             taskInput.value = ''; // Clear the input field
+            toggleDeleteButton(); // Check if delete button should be shown
         }
     });
 
@@ -30,5 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 taskList.removeChild(task);
             }
         });
+        toggleDeleteButton(); // Check if delete button should be hidden
     });
 });
