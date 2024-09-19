@@ -37,20 +37,26 @@ body::before {
     color: var(--light);
 }
 
+.custom-title {
+    color: var(--accent);
+}
 .custom-mid {
     background-color: var(--medium);
 }
 
-#log-btn{
+
+.link-custom{
     color: var(--light);
 }
 
-#log-btn:hover {
+.link-custom:hover {
     color: var(--accent);
+    font-weight: bold;
 }
 
 .gif-66vh {
     height: 66vh;
+    border-radius: 10px;
 }
 
 .neon-frame {
@@ -58,4 +64,27 @@ body::before {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+}
+
+/* login section */
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--medium);
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+}
+
+.btn-custom {
+    color: var(--dark);
+    background-color: var(--light);
+}
+.btn-custom:hover {
+    color: var(--dark);
+    background-color: var(--accent);
 }
