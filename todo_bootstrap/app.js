@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     deleteButton.style.display = 'none';
 
     // Function to add a new task
-    addButton.addEventListener('click', function() {
-        const taskText = taskInput.value.trim();
+    function addTask(taskText) {
         if (taskText !== '') {
             const newTask = document.createElement('li');
             newTask.className = 'list-group-item d-flex justify-content-between align-items-center';
@@ -31,6 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
             taskList.appendChild(newTask);
             taskInput.value = ''; // Clear the input field
             toggleDeleteButton(); // Check if delete button should be shown
+        }
+    }
+
+    addButton.addEventListener('click', function() {
+        addTask(taskInput.value.trim());
+    });
+
+    taskInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            addTask(taskInput.value.trim());
         }
     });
 
