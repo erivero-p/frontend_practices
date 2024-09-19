@@ -1,0 +1,40 @@
+:root { /* here I can put body too */
+    --dark: #152c30;
+    --medium: #305457;
+    --accent: #F5882F;
+    --light: #faaa69;
+}
+
+#pong {
+    font-family: 'Press Start 2P', sans-serif;
+    color: var(--accent);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background-color: var(--dark);
+    margin: 0;
+    padding: 0;
+}
+
+.custom-text {
+    color: var(--light);
+}
+
+.custom-mid {
+    background-color: var(--medium);
+}
+
+#log-btn{
+    color: var(--light);
+}
+
+#log-btn:hover {
+    color: var(--accent);
+}
+
+.gif-66vh {
+    height: 66vh;
+}
