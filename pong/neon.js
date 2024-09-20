@@ -10,13 +10,6 @@ function animateNeon(element, maxShadow, interval) {
             0 0 ${shadowSize * 2}px #00ffcc, 
             0 0 ${shadowSize * 3}px #00ffff, 
             0 0 ${shadowSize * 4}px #00ffff`;
-
-       /*  element.style.boxShadow = `
-            0 0 ${shadowSize}px #00ffcc, 
-            0 0 ${shadowSize * 2}px #00ffff, 
-            0 0 ${shadowSize * 3}px #00ffff`;
- */
-        // Ajusta el incremento o decremento del tamaño de sombra
         if (increment) {
             shadowSize++;
             if (shadowSize >= maxShadow) increment = false;
@@ -27,12 +20,59 @@ function animateNeon(element, maxShadow, interval) {
     }, interval);
 }
 
+function animateNeonFrame(element, maxShadow, interval, blinkTimes, restDuration) {
+    let shadowSize = maxShadow;
+    let decrement = true;
+    let blinkCount = 0;
+    let isResting = false;
+
+    const animationInterval = setInterval(() => {
+        if (isResting) {
+            /* during rest we keep max shadow */
+            element.style.boxShadow = `
+                0 0 ${maxShadow}px #00ffcc, 
+                0 0 ${maxShadow * 2}px #00ffff, 
+                0 0 ${maxShadow * 3}px #00ffff`;
+            return;
+        }
+        /* changing box shadow when is not resting */
+        element.style.boxShadow = `
+            0 0 ${shadowSize}px #00ffcc, 
+            0 0 ${shadowSize * 2}px #00ffff, 
+            0 0 ${shadowSize * 3}px #00ffff`;
+        /* adjusting shadow size incrementing/decrementing */
+        if (decrement) {
+            shadowSize--;
+            if (shadowSize <= 0) {
+                decrement = false;
+            }
+        } else {
+            shadowSize++;
+            if (shadowSize >= maxShadow) {
+                decrement = true;
+                blinkCount++;
+
+                if (blinkCount >= blinkTimes) {
+                    isResting = true;
+                    setTimeout(() => {
+                        isResting = false;
+                        blinkCount = 0;
+                    }, restDuration);
+                }
+            }
+        }
+    }, interval);
+}
+
+
 // Obtener elementos a los que se les aplicará el efecto neón
 document.addEventListener("DOMContentLoaded", () => {
-    const neonText = document.querySelector("h5.custom-text");
-    const neonFrame = document.querySelector("div.gif-neon-frame");
+
+    const neonText = document.getElementById("neon-text");
+    const neonFrame = document.querySelector("div.blinking-neon-frame");
 
     // Iniciar la animación con un máximo de 10px de sombra y un intervalo de 50ms
     animateNeon(neonText, 10, 100);
-    animateNeon(neonFrame, 10, 50);
+    animateNeonFrame(neonFrame, 10, 35, 2, 1000);
+
 });

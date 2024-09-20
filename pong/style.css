@@ -66,6 +66,7 @@ body::before {
     box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
 }
 
+
 /* login section */
 
 .login-card {
@@ -77,7 +78,12 @@ body::before {
     padding: 20px;
     border-radius: 10px;
     background-color: var(--medium);
-    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+    /* box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; */
+}
+
+.blinking-neon-frame {
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .btn-custom {
