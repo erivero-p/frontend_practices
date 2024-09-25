@@ -30,7 +30,7 @@ body::before {
  */    background-image: url("./fondo.png");
     background-size: cover;
     background-position: center;
-    opacity: 0.5; /* Adjust the opacity as needed */
+    opacity: 0.4; /* Adjust the opacity as needed */
     z-index: -1; /* Ensure the pseudo-element is behind other content */
 }
 
