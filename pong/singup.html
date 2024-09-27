@@ -10,49 +10,53 @@
 </head>
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-mid">
+    <nav class="navbar navbar-expand-lg navbar-dark ctm-bg-mid">
         <div class="container-fluid">
             <a class="navbar-brand" id="pong" href="#">PONG</a>
             <div class="d-flex ms-auto align-items-center">
-                <a class="nav-link link-custom" href="home.html">Home</a>
+                <a class="nav-link ctm-link" href="home.html">Home</a>
             </div>
         </div>
       </nav>
       <!-- login card -->
-      <div class="container mt-5 blinking-neon-frame">
-        <div class="container login-card">
-          <div class="row" id="contact">
-            <h2 class="text-center custom-title">Sign up</h2>
-            <div class="d-flex align-items-center mb-3 p-3">
-              <div class="form-floating">
-                  <input type="email" class="form-control" id="todo-input" placeholder="email">
-                  <label for="floatingInput">email</label>
-              </div>
-            </div>
-            <form>
-                <div class="mb-3">
-                  <label for="user" class="form-label custom-text">User</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label custom-text">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label custom-text" for="exampleCheck1">Remember me</label>
-                </div>
-                <div class="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-custom">Submit</button>
-                  <div class="text-center custom-text p-1">or</div>
-                  <button type="submit" class="btn btn-custom">login with 42</button>
-                </div>
-              </form>
-              <div class="d-flex justify-content-center mt-3">
-                <a href="#" class="custom-text link-custom">Forgot your password?</a>
+       <div class="container mt-5 blinking-neon-frame">
+          <div class="container login-card">
+              <div class="row" id="contact">
+                  <h2 class="text-center ctm-text-title">Sign up</h2>
+                  <h5 class="text-center ctm-text-light p-2">Create a new account to get started</h5>
+                  <form>
+                      <div class="form-floating mb-3">
+                          <input type="email" class="form-control" id="todo-input" placeholder="email">
+                          <label for="todo-input" class="ctm-text-dark">Email</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="User">
+                          <label for="exampleInputEmail1"class="ctm-text-dark">Username</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          <label for="exampleInputPassword1"class="ctm-text-dark">Password</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          <label for="exampleInputPassword1"class="ctm-text-dark">Confirm Password</label>
+                      </div>
+                      <div class="form-check mb-3">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label ctm-text-light" for="exampleCheck1">Remember me</label>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                          <button type="submit" class="btn ctm-btn">Submit</button>
+                          <div class="text-center ctm-text-light p-1">or</div>
+                          <button type="submit" class="btn ctm-btn">login with 42</button>
+                      </div>
+                  </form>
+                  <div class="d-flex justify-content-center mt-3">
+                      <div class="ctm-text-light"> You already have an account?</div>
+                      <a href="login.html" class="ctm-text-light ctm-link ms-2">log in</a>
+                  </div>
               </div>
           </div>
-        </div>
       </div>
     <!-- Button trigger modal -->
 <div class="container d-flex justify-content-center mt-5">
@@ -66,12 +70,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">User does not exist</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Email already registered</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          You don't have an account?
-            <a href="#" class="custom-text link-custom">Sign up</a>
+          You already have an account?
+            <a href="login.html" class="ctm-text-light ctm-link">Log in</a>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Got it!</button>

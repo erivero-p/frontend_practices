@@ -34,32 +34,29 @@ body::before {
     z-index: -1; /* Ensure the pseudo-element is behind other content */
 }
 
-.custom-text {
-    color: var(--light);
+.ctm-text-light {
+    color: var(--light); 
 }
-
-.custom-title {
+.ctm-text-dark {
+    color: var(--dark) !important; 
+}
+.ctm-text-title {
     color: var(--accent);
 }
-.custom-mid {
+.ctm-bg-mid {
     background-color: var(--medium);
 }
-
-
-.link-custom{
+.ctm-link{
     color: var(--light);
 }
-
-.link-custom:hover {
+.ctm-link:hover {
     color: var(--accent);
     font-weight: bold;
 }
-
 .gif-66vh {
     height: 66vh;
     border-radius: 10px;
 }
-
 .neon-frame {
     border: 2px solid transparent;
     padding: 10px;
@@ -69,7 +66,6 @@ body::before {
 
 
 /* login section */
-
 .login-card {
     display: flex;
     flex-direction: column;
@@ -87,11 +83,11 @@ body::before {
     border-radius: 10px;
 }
 
-.btn-custom {
+.ctm-btn {
     color: var(--dark);
     background-color: var(--light);
 }
-.btn-custom:hover {
+.ctm-btn:hover {
     color: var(--dark);
     background-color: var(--accent);
 }
