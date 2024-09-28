@@ -1,8 +1,13 @@
 :root { /* here I can put body too */
-    --dark: #152c30;
+    --dark: #2D1240;
+    --medium: #5C3973;
+    --accent: #00F56A;
+    --light: #84CCA3;
+    --title: #F59C00;
+/*     --dark: #152c30;
     --medium: #305457;
     --accent: #F5882F;
-    --light: #faaa69;
+    --light: #faaa69; */
 }
 
 @font-face {
@@ -16,7 +21,7 @@
     font-family: 'ROG LyonsType Regular';
     /*  font-family: 'Press Start 2P', sans-serif;*/
     font-style: bolder;
-    color: var(--accent);
+    color: var(--title);
     margin: 0;
     padding: 0;
 }
@@ -48,13 +53,17 @@ body::before {
 .ctm-text-light {
     color: var(--light);
 }
-.ctm-text-dark {
-    color: var(--dark) !important; 
-}
-.ctm-text-title {
-    color: var(--accent);
-    font-family: 'ROG LyonsType Regular';
 
+.ctm-text-dark {
+    color: var(--medium) !important; 
+}
+/* input.ctm-text-dark:focus {
+    color: var(--title);
+} */
+
+.ctm-text-title {
+    color: var(--title);
+    font-family: 'ROG LyonsType Regular';
 }
 .ctm-bg-mid {
     background-color: var(--medium);
@@ -74,7 +83,7 @@ body::before {
     border: 2px solid transparent;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+    box-shadow: 0 0 10px #00F56A, 0 0 20px #00F56A, 0 0 30px #00F56A, 0 0 40px #00F56Acc;
 }
 
 

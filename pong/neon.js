@@ -1,3 +1,6 @@
+const color1 = "#00F56A";
+const color2 = "#00F56Acc";
+
 // Función para animar el efecto neón en un elemento
 function animateNeon(element, maxShadow, interval) {
     let shadowSize = 0;
@@ -6,10 +9,10 @@ function animateNeon(element, maxShadow, interval) {
     setInterval(() => {
         // Cambia el tamaño de la sombra
         element.style.textShadow = `
-            0 0 ${shadowSize}px #00ffcc, 
-            0 0 ${shadowSize * 2}px #00ffcc, 
-            0 0 ${shadowSize * 3}px #00ffff, 
-            0 0 ${shadowSize * 4}px #00ffff`;
+            0 0 ${shadowSize}px ${color2}, 
+            0 0 ${shadowSize * 2}px ${color1}, 
+            0 0 ${shadowSize * 3}px ${color1}, 
+            0 0 ${shadowSize * 4}px ${color1}`;
         if (increment) {
             shadowSize++;
             if (shadowSize >= maxShadow) increment = false;
@@ -30,16 +33,16 @@ function animateNeonFrame(element, maxShadow, interval, blinkTimes, restDuration
         if (isResting) {
             /* during rest we keep max shadow */
             element.style.boxShadow = `
-                0 0 ${maxShadow}px #00ffcc, 
-                0 0 ${maxShadow * 2}px #00ffff, 
-                0 0 ${maxShadow * 3}px #00ffff`;
+                0 0 ${maxShadow}px ${color2}, 
+                0 0 ${maxShadow * 2}px ${color1}, 
+                0 0 ${maxShadow * 3}px ${color1}`;
             return;
         }
         /* changing box shadow when is not resting */
         element.style.boxShadow = `
-            0 0 ${shadowSize}px #00ffcc, 
-            0 0 ${shadowSize * 2}px #00ffff, 
-            0 0 ${shadowSize * 3}px #00ffff`;
+            0 0 ${shadowSize}px ${color2}, 
+            0 0 ${shadowSize * 2}px ${color1}, 
+            0 0 ${shadowSize * 3}px ${color1}`;
         /* adjusting shadow size incrementing/decrementing */
         if (decrement) {
             shadowSize--;
