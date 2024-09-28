@@ -5,8 +5,17 @@
     --light: #faaa69;
 }
 
+@font-face {
+    font-family: 'ROG LyonsType Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('ROG LyonsType Regular'), url('fonts/ROGLyonsTypeRegular3.woff') format('woff');
+}
+
 #pong {
-    font-family: 'Press Start 2P', sans-serif;
+    font-family: 'ROG LyonsType Regular';
+    /*  font-family: 'Press Start 2P', sans-serif;*/
+    font-style: bolder;
     color: var(--accent);
     margin: 0;
     padding: 0;
@@ -15,6 +24,8 @@
 body {
     font-family: 'VT323', monospace;
     background-color: var(--dark);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
     margin: 0;
     padding: 0;
 }
@@ -35,13 +46,15 @@ body::before {
 }
 
 .ctm-text-light {
-    color: var(--light); 
+    color: var(--light);
 }
 .ctm-text-dark {
     color: var(--dark) !important; 
 }
 .ctm-text-title {
     color: var(--accent);
+    font-family: 'ROG LyonsType Regular';
+
 }
 .ctm-bg-mid {
     background-color: var(--medium);
