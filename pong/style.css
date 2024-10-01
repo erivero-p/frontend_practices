@@ -57,16 +57,18 @@ body::before {
 .ctm-text-dark {
     color: var(--medium) !important; 
 }
-/* input.ctm-text-dark:focus {
-    color: var(--title);
-} */
 
+.navbar-brand {
+    cursor: default;
+}
 .ctm-text-title {
     color: var(--title);
     font-family: 'ROG LyonsType Regular';
 }
-.ctm-bg-mid {
+.ctm-navbar {
     background-color: var(--medium);
+    background: linear-gradient(to bottom, var(--medium), var(--dark)); /* Example gradient */
+    box-shadow: 0 0 10px #00F56A, 0 0 10px #00F56A, 0 0 15px #00F56A, 0 0 30px #00F56Acc;
 }
 .ctm-link{
     color: var(--light);
@@ -88,7 +90,7 @@ body::before {
 
 
 /* login section */
-.login-card {
+.ctm-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,4 +114,16 @@ body::before {
 .ctm-btn:hover {
     color: var(--dark);
     background-color: var(--accent);
+}
+
+/* Define the border color for input fields when focused */
+input:focus, select:focus, button:focus {
+    border-color: var(--light) !important; /* Use your desired color variable */
+    box-shadow: 0 0 5px var(--light) !important; /* Optional: Add a shadow effect */
+    outline: none !important; /* Remove the default outline */
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--accent) !important;
+    border-color: var(--light) !important;
 }

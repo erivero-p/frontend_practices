@@ -1,13 +1,11 @@
 const color1 = "#00F56A";
 const color2 = "#00F56Acc";
 
-// Función para animar el efecto neón en un elemento
 function animateNeon(element, maxShadow, interval) {
     let shadowSize = 0;
     let increment = true;
 
     setInterval(() => {
-        // Cambia el tamaño de la sombra
         element.style.textShadow = `
             0 0 ${shadowSize}px ${color2}, 
             0 0 ${shadowSize * 2}px ${color1}, 
@@ -68,13 +66,11 @@ function animateNeonFrame(element, maxShadow, interval, blinkTimes, restDuration
 }
 
 
-// Obtener elementos a los que se les aplicará el efecto neón
 document.addEventListener("DOMContentLoaded", () => {
 
     const neonText = document.getElementById("neon-text");
     const neonFrame = document.querySelector("div.blinking-neon-frame");
 
-    // Iniciar la animación con un máximo de 10px de sombra y un intervalo de 50ms
     animateNeon(neonText, 10, 100);
     animateNeonFrame(neonFrame, 10, 35, 2, 1000);
 
