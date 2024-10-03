@@ -65,6 +65,65 @@ function animateNeonFrame(element, maxShadow, interval, blinkTimes, restDuration
     }, interval);
 }
 
+function animateNeonCard(element, maxShadow, interval, blinkTimes, restDuration) {
+    let shadowSize = maxShadow;
+    let decrement = true;
+    let blinkCount = 0;
+    let isResting = false;
+    let animationInterval;
+
+    function startAnimation() {
+        animationInterval = setInterval(() => {
+            if (isResting) {
+                element.style.boxShadow = `
+                    0 0 ${maxShadow}px ${color2}, 
+                    0 0 ${maxShadow * 2}px ${color1}, 
+                    0 0 ${maxShadow * 3}px ${color1}`;
+                return;
+            }
+            element.style.boxShadow = `
+                0 0 ${shadowSize}px ${color2}, 
+                0 0 ${shadowSize * 2}px ${color1}, 
+                0 0 ${shadowSize * 3}px ${color1}`;
+            if (decrement) {
+                shadowSize--;
+                if (shadowSize <= 0) {
+                    decrement = false;
+                }
+            } else {
+                shadowSize++;
+                if (shadowSize >= maxShadow) {
+                    decrement = true;
+                    blinkCount++;
+
+                    if (blinkCount >= blinkTimes) {
+                        isResting = true;
+                        setTimeout(() => {
+                            isResting = false;
+                            blinkCount = 0;
+                        }, restDuration);
+                    }
+                }
+            }
+        }, interval);
+    }
+
+    function stopAnimation() {
+        clearInterval(animationInterval);
+        element.style.boxShadow = 'none';
+    }
+
+    element.addEventListener('mouseenter', startAnimation);
+    element.addEventListener('mouseleave', stopAnimation);
+}
+
+function animateCardHover() {
+    const cards = document.querySelectorAll('.card-hover');
+    cards.forEach(card => {
+        animateNeonCard(card, 10, 35, 2, 1000);
+    });
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -73,5 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animateNeon(neonText, 10, 100);
     animateNeonFrame(neonFrame, 10, 35, 2, 1000);
+    animateCardHover();
 
 });
