@@ -108,6 +108,18 @@
             const welcomeButton = document.getElementById('welcomeButton');
             welcomeButton.textContent = `Welcome ${loggedInUser}`;
         });
+
+        document.addEventListener('click', function(event) {
+        const userMenu = document.getElementById('userMenu');
+        const isClickInside = userMenu.contains(event.target) || event.target === welcomeButton;
+
+        if (!isClickInside) {
+            const bsCollapse = new bootstrap.Collapse(userMenu, {
+                toggle: false
+            });
+            bsCollapse.hide();
+        }
+        });
     </script>
 </body>
 </html>

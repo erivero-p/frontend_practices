@@ -4,9 +4,9 @@ const pass = 'patata';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginForm');
+    const loginForm = document.getElementById('submit');
 
-    loginForm.addEventListener('submit', function(event) {
+    loginForm.addEventListener('click', function(event) {
         event.preventDefault(); // Prevent the form from submitting
 
         const username = document.getElementById('username').value;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         if (username === user && password === pass) {
-            alert('Login successful!');
+            /* alert('Login successful!'); */
             window.location.href = "home_log.html";
         } else {
             alert('Incorrect password');

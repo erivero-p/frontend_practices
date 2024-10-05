@@ -1,0 +1,32 @@
+:root {
+    --pink: #eccce7;
+    --blue: #8de1f0;
+    --accent: #00F56A;
+    --light: #84CCA3;
+    --title: #F59C00;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(to bottom, var(--pink), var(--blue));
+}
+
+.container {
+    margin: 60px auto;
+    background: #ffff;
+    padding: 0;
+    border-radius: 7px;
+}
+
+.profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.settings-tray {
+    background: grey;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+}
