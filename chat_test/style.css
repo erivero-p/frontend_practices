@@ -1,9 +1,10 @@
 :root {
     --pink: #eccce7;
     --blue: #8de1f0;
-    --accent: #00F56A;
+    --greish: #d5eaee;
     --light: #84CCA3;
-    --title: #F59C00;
+    --dp: #ca6f89;
+    --accent: #8d1437;
 }
 
 html, body {
@@ -26,7 +27,42 @@ html, body {
 }
 
 .settings-tray {
-    background: grey;
+    background: var(--greish);
     padding: 10px 15px;
-    border-bottom: 1px solid #ccc;
+    border-top-left-radius: 7px;
+}
+
+i {
+    margin-top: 10px;
+    margin-left: 14px;
+    font-size: 25px;
+    color: var(--dp);
+    transition: .3s;
+    &:hover {
+        color: var(--accent);
+        cursor: pointer;
+    }
+}
+
+.left-cont {
+    background-color: #d5eaee62;;
+
+}
+.search-box {
+    padding: 10px 15px;
+}
+
+.search-box .form-control:focus {
+
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+
+.friend-drawer:hover, .friend-drawer.active  {
+    background: var(--greish);
+    cursor: pointer;
+    .nickname {
+        font-weight: bold;
+    }
 }
