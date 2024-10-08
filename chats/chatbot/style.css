@@ -1,0 +1,71 @@
+:root {
+	--dark: #004a67;
+	--incoming: #f8ecf3;
+	--outgoing: #006d98;
+	--pink: #eccce7;
+    --blue: #8de1f0;
+}
+
+html, body {
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	background: linear-gradient(to top right, var(--pink), var(--blue));
+}
+
+.ctm-card {
+	border-radius: 15px !important;
+}
+.ctm-header {
+	background: var(--dark) !important;
+	border-radius: 15px !important;
+	color: white;
+	padding: 9px 15px;
+}
+
+.chat-bubble {
+	background: var(--incoming);
+	padding: 10px 15px;
+	border-radius: 10px;
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		width: 0;
+		height: 0;
+		border: 15px solid transparent;
+		border-bottom: 0;
+		margin-top: -10px;
+	}
+}
+
+.chat-bubble--in:after {
+    left: 0;
+    border-right-color: var(--incoming);
+    border-left: 0;
+    margin-left: -14px;
+}
+
+.chat-bubble--out {
+    background: var(--outgoing);
+	color: white;
+    &:after {
+        right: 0;
+        border-left-color: var(--outgoing);
+        border-right: 0;
+        margin-left: 0;
+        margin-right: -14px;
+    }
+}
+
+.ctm-form {
+    border-top-left-radius: 15px !important;
+    border-bottom-left-radius: 15px !important;
+}
+
+.btm-ctm {
+    background: var(--dark) !important;
+    color: white !important;
+     border-top-right-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
