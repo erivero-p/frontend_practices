@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="card ctm-card">
+    <div class="container mt-5 d-flex justify-content-end">
+        <div class="card ctm-card shadow">
             <div class="card-header ctm-header">
                 <h2 class="card-title">Chatbox</h2>
             </div>
             <div class="card-body">
                 <div class="row mb-3">
-                    <div class="col-md-8 col-sm-10 col-12">
+                    <div class="col-12">
                         <div class="d-flex align-items-center">
-                            <span class="material-symbols-outlined me-3">smart_toy</span>
+                            <span class="material-symbols-outlined me-3 toy">smart_toy</span>
                             <div class="chat-bubble chat-bubble--in">
                                 Hi! How can I help you today?
                             </div>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-8 col-sm-10 col-12 ms-auto">
+                    <div class="col-12">
                         <div class="d-flex justify-content-end me-2">
                             <div class="chat-bubble chat-bubble--out">
                                 Fatal, gracias
@@ -36,8 +36,8 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
-                <div class="input-group ctm">
+            <div class="card-footer ctm-footer">
+                <div class="input-group">
                     <input type="text" class="form-control ctm-form" placeholder="Type a message">
                     <button class="btn btm-ctm" type="button">
                         <span class="material-symbols-outlined">send</span>
