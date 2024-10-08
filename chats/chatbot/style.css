@@ -15,7 +15,8 @@ html, body {
 .ctm-card {
 	border-radius: 15px !important;
 	max-width: 400px;
-	height: 600px;
+	height: 520px;
+
 }
 .ctm-header {
 	background: var(--dark) !important;
@@ -70,14 +71,39 @@ html, body {
 /* .ctm-footer {
 	background-color: var(--incoming) !important;
 } */
-.ctm-form {
+.chat-input {
     border-top-left-radius: 15px !important;
     border-bottom-left-radius: 15px !important;
+	&:focus {
+		box-shadow: none !important;
+		outline: none !important;
+	}
 }
 
-.btm-ctm {
+
+
+.send-btn {
     background: var(--dark) !important;
     color: white !important;
      border-top-right-radius: 15px !important;
     border-bottom-right-radius: 15px !important;
+	&:focus {
+		box-shadow: none !important;
+		outline: none !important;
+	}
+}
+
+.chat-toggler {
+    position: fixed;
+    right: 50px;
+    bottom: 35px;
+    cursor: pointer;
+    color: var(--incoming);    
+    background-color: var(--dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Adjust the width and height as needed */
+    height: 50px; /* Adjust the width and height as needed */
 }
