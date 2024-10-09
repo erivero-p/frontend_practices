@@ -25,6 +25,12 @@ html, body {
 	padding: 9px 15px;
 }
 
+.card-body {
+	overflow-y: auto;
+	height: 400px;
+	padding: 0;
+}
+
 .toy {
     color: var(--incoming);	
 	background-color: var(--dark);
@@ -59,6 +65,7 @@ html, body {
 .chat-bubble--out {
     background: var(--outgoing);
 	color: white;
+	margin-right: 10px;
     &:after {
         right: 0;
         border-left-color: var(--outgoing);
