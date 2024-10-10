@@ -1,0 +1,21 @@
+/* #chat-container {
+	position: fixed;
+	bottom: 0;
+	right: 20px;
+	width: 300px;
+	transition: height 0.3s ease-in-out;
+} */
+#chat-container {
+	position: fixed;
+	bottom: 0;
+	right: 20px;
+	width: 300px;
+	height: 400px;
+	transition: height 0.3s ease-in-out;
+}
+
+#new-chat-btn {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
