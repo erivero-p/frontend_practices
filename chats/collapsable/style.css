@@ -1,18 +1,18 @@
-/* #chat-container {
+#chat-container {
 	position: fixed;
 	bottom: 0;
 	right: 20px;
 	width: 300px;
 	transition: height 0.3s ease-in-out;
-} */
-#chat-container {
+}
+/* #chat-container {
 	position: fixed;
 	bottom: 0;
 	right: 20px;
 	width: 300px;
 	height: 400px;
 	transition: height 0.3s ease-in-out;
-}
+} */
 
 #new-chat-btn {
 	position: absolute;
@@ -20,8 +20,8 @@
 	right: 10px;
 }
 
-#chat-messages {
-	height: 255px;
+#chat-window, #recent-chats, #friends-list {
+	height: 350px;
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;

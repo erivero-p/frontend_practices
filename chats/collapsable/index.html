@@ -15,16 +15,16 @@
 		<div id="chat-header" class="card-header bg-primary text-white d-flex justify-content-between align-items-center position-relative">
 			<h5 class="mb-0">Chat</h5>
 			<!-- notification badge -->
-			<span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+			<span id="notification-indicator" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle" style="display: none;">
 				<span class="visually-hidden">New messages</span>
 			</span>
 			<!-- toggle icon -->
 			<i class="fas fa-chevron-up" id="toggle-icon"></i>
 		</div> <!-- this closes the chat header -->
 		<!-- chat body -->
-		<div id="chat-body" class="card-body p-0"> <!-- style="display: none;" -->
+		<div id="chat-body" class="card-body p-0" style="display: none;"> <!-- style="display: none;" -->
 			<!-- recent chats window -->
-			<div id="recent-chats" style="display:none;"> <!-- this wraps two chats examples, and the button -->
+			<div id="recent-chats"> <!-- this wraps two chats examples, and the button -->
 				<div class="list-group list-group-flush p-2 ms-1 me-1">
 					<a href="#" class="list-group-item list-group-item-action">
 						<div class="d-flex align-items-center">
@@ -53,7 +53,7 @@
 			<!-- new chat window -->
 			<div id="friends-list" style="display:none;">
 				<div class="list-group list-group-flush p-2 ms-1 me-1">
-					<div class="list-group-item bg-light btn">
+					<div id="back-to-recents" class="list-group-item bg-light btn">
 						<i class="fas fa-arrow-left me-2"></i>
 						<span>back to recents</span>
 					</div>
@@ -63,7 +63,7 @@
 				</div>
 			</div>
 			<!-- chat window -->
-			<div id="chat-window">
+			<div id="chat-window" style="display:none;">
 				<!-- back - username bar -->
 				<div id="back" class="p-2 bg-light border-bottom">
 					<i class="fas fa-arrow-left btn"></i>
