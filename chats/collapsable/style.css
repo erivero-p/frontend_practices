@@ -18,9 +18,10 @@
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
+	z-index: 1000;
 }
 
-#chat-window, #recent-chats, #friends-list {
+#chat-window, #recent-chats, #new-chat {
 	height: 350px;
 	overflow-y: auto;
 	display: flex;
