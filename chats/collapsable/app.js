@@ -125,6 +125,27 @@ function renderRecentChats() {
 	}).join('');
 }
 
+function openChat(chatId) {
+	currentChat = chats.find(chat => chat.id === chatId);
+	if (currentChat) {
+		currentView = 'chat';
+		recentChatsTab.style.display = 'none';
+		newChatTab.style.display = 'none';
+		chatTab.style.display = 'block';
+		const chatName = document.getElementById('current-chat-name');
+		chatName.textContent = currentChat.name;
+		renderChat();
+	} 
+}
+
+function renderChat() {	
+	if (currentChat)
+	{
+		
+
+	}
+}
+
 function updateNotificationIndicator() {
 	const notificationIndicator = document.getElementById('notification-indicator');
 	notificationIndicator.style.display =  hasUnreadMessages && isExpanded ? 'none' : 'block';
