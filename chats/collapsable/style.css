@@ -5,14 +5,14 @@
 	width: 300px;
 	transition: height 0.3s ease-in-out;
 }
-/* #chat-container {
+/*  #chat-container {
 	position: fixed;
 	bottom: 0;
 	right: 20px;
 	width: 300px;
 	height: 400px;
 	transition: height 0.3s ease-in-out;
-} */
+}  */
 
 #new-chat-btn {
 	position: absolute;
@@ -24,8 +24,20 @@
 #chat-window, #recent-chats, #new-chat {
 	height: 350px;
 	overflow-y: auto;
+	/* display: flex; */
+	/* flex-direction: column; */
+}
+
+#chat-messages {
+	/* height: 248px; */
 	display: flex;
 	flex-direction: column;
+	padding: 10px;
+}
+#chat-form {
+	position: fixed;
+	bottom: 0;
+	width: 298px;
 }
 
 .message {

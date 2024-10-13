@@ -29,29 +29,28 @@ const friends = [
 ];
 const chats = [
 	{ id: 1, name: "Alice", messages: [
-		{ id: 1, text: "Hey there!", sender: "other", read: true },
-		{ id: 2, text: "Hi Alice! How are you?", sender: "user", read: true },
-		{ id: 3, text: "I'm good, thanks!", sender: "other", read: false },
+		{ id: 1, text: "Hey there!", sender: "in", read: true },
+		{ id: 2, text: "Hi Alice! How are you?", sender: "out", read: true },
+		{ id: 3, text: "I'm good, thanks!", sender: "in", read: false },
 	]},
 	{ id: 2, name: "Bob", messages: [
-		{ id: 1, text: "Did you see the game last night?", sender: "other", read: true },
-		{ id: 2, text: "Yeah, it was amazing!", sender: "user", read: true },
+		{ id: 1, text: "Did you see the game last night?", sender: "in", read: true },
+		{ id: 2, text: "Yeah, it was amazing!", sender: "out", read: true },
 	]},
 	{ id: 3, name: "Charlie", messages: [
-		{ id: 1, text: "Meeting at 3pm today", sender: "other", read: true },
-		{ id: 2, text: "I'll be there", sender: "user", read: true },
-		{ id: 3, text: "Great, see you then!", sender: "other", read: false },
+		{ id: 1, text: "Meeting at 3pm today", sender: "in", read: true },
+		{ id: 2, text: "I'll be there", sender: "out", read: true },
+		{ id: 3, text: "Great, see you then!", sender: "in", read: false },
 	]},
 	{ id: 4, name: "David", messages: [
-		{ id: 1, text: "How's the project going?", sender: "other", read: true },
-		{ id: 2, text: "On track, thanks for asking!", sender: "user", read: true },
+		{ id: 1, text: "How's the project going?", sender: "in", read: true },
+		{ id: 2, text: "On track, thanks for asking!", sender: "out", read: true },
 	]},
 	{ id: 5, name: "Emma", messages: [
-		{ id: 1, text: "Lunch tomorrow?", sender: "other", read: true },
-		{ id: 2, text: "Sounds good!", sender: "user", read: true },
+		{ id: 1, text: "Lunch tomorrow?", sender: "in", read: true },
+		{ id: 2, text: "Sounds good!", sender: "out", read: true },
 	]},
 ];
-
 
 
 chatHeader.addEventListener('click', toggleChat);
@@ -141,10 +140,24 @@ function openChat(chatId) {
 function renderChat() {	
 	if (currentChat)
 	{
-		
-
+		const chatMessages = document.getElementById('chat-messages');
+		chatMessages.innerHTML = currentChat.messages.map(message => `
+			<div class="message ${message.sender}">
+				${message.text}
+			</div>
+		`).join('');
+		chatMessages.scrollTop = chatMessages.scrollHeight; //scrolls to the bottom ensuring the last message is visible
+	//	markMessagesAsRead();	
 	}
 }
+
+recentChatsTab.addEventListener('click', event => {
+	event.preventDefault();
+	const chatItem = event.target.closest('.chat-item');
+	if (chatItem) {
+		openChat(parseInt(chatItem.dataset.chatId));
+	}
+});
 
 function updateNotificationIndicator() {
 	const notificationIndicator = document.getElementById('notification-indicator');

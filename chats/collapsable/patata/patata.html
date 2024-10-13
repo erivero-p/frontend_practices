@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collapsible Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        #chat-container {
+            position: fixed;
+            bottom: 0;
+            right: 20px;
+            width: 300px;
+            transition: height 0.3s ease-in-out;
+        }
+        #chat-header {
+            cursor: pointer;
+        }
+        #chat-messages, #recent-chats, #friend-list {
+            height: 300px;
+            overflow-y: auto;
+        }
+        .message {
+            max-width: 80%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 20px;
+        }
+        .message.user {
+            background-color: #007bff;
+            color: white;
+            margin-left: auto;
+        }
+        .message.other {
+            background-color: #f1f3f5;
+        }
+        .chat-item, .friend-item {
+            cursor: pointer;
+        }
+        .chat-item:hover, .friend-item:hover {
+            background-color: #f8f9fa;
+        }
+        .back-button {
+            cursor: pointer;
+        }
+        #new-chat-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .unread-message {
+            font-weight: bold;
+        }
+        #notification-indicator {
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div class="card shadow">
+            <div id="chat-header" class="card-header bg-primary text-white d-flex justify-content-between align-items-center position-relative">
+                <h5 class="mb-0">Chats</h5>
+                <div>
+                    <span id="notification-indicator" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle" style="display: none;">
+                        <span class="visually-hidden">New messages</span>
+                    </span>
+                    <i class="fas fa-chevron-up" id="toggle-icon"></i>
+                </div>
+            </div>
+            <div id="chat-body" class="card-body p-0" style="display: none;">
+                <div id="recent-chats" class="list-group list-group-flush">
+                    <!-- Recent chats will be inserted here -->
+                </div>
+                <div id="friend-list" class="list-group list-group-flush" style="display: none;">
+                    <!-- Friend list will be inserted here -->
+                </div>
+                <div id="chat-content" style="display: none;">
+                    <div class="p-2 bg-light border-bottom">
+                        <i class="fas fa-arrow-left back-button me-2"></i>
+                        <span id="current-chat-name"></span>
+                    </div>
+                    <div id="chat-messages" class="p-3">
+                        <!-- Messages will be inserted here -->
+                    </div>
+                    <form id="chat-form" class="p-3 border-top">
+                        <div class="input-group">
+                            <input type="text" id="message-input" class="form-control" placeholder="Type a message...">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <button id="new-chat-btn" class="btn btn-primary rounded-circle">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const chatHeader = document.getElementById('chat-header');
+        const chatBody = document.getElementById('chat-body');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const recentChats = document.getElementById('recent-chats');
+        const friendList = document.getElementById('friend-list');
+        const chatContent = document.getElementById('chat-content');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message-input');
+        const currentChatName = document.getElementById('current-chat-name');
+        const backButton = document.querySelector('.back-button');
+        const newChatBtn = document.getElementById('new-chat-btn');
+        const notificationIndicator = document.getElementById('notification-indicator');
+
+        let isExpanded = false;
+        let currentChat = null;
+        let currentView = 'recent-chats';
+
+        const chats = [
+            { id: 1, name: "Alice", messages: [
+                { id: 1, text: "Hey there!", sender: "other", read: true },
+                { id: 2, text: "Hi Alice! How are you?", sender: "user", read: true },
+                { id: 3, text: "I'm good, thanks!", sender: "other", read: false },
+            ]},
+            { id: 2, name: "Bob", messages: [
+                { id: 1, text: "Did you see the game last night?", sender: "other", read: true },
+                { id: 2, text: "Yeah, it was amazing!", sender: "user", read: true },
+            ]},
+            { id: 3, name: "Charlie", messages: [
+                { id: 1, text: "Meeting at 3pm today", sender: "other", read: true },
+                { id: 2, text: "I'll be there", sender: "user", read: true },
+                { id: 3, text: "Great, see you then!", sender: "other", read: false },
+            ]},
+            { id: 4, name: "David", messages: [
+                { id: 1, text: "How's the project going?", sender: "other", read: true },
+                { id: 2, text: "On track, thanks for asking!", sender: "user", read: true },
+            ]},
+            { id: 5, name: "Emma", messages: [
+                { id: 1, text: "Lunch tomorrow?", sender: "other", read: true },
+                { id: 2, text: "Sounds good!", sender: "user", read: true },
+            ]},
+        ];
+
+        const friends = [
+            { id: 6, name: "Frank" },
+            { id: 7, name: "Grace" },
+            { id: 8, name: "Henry" },
+            { id: 9, name: "Ivy" },
+        ];
+
+        function toggleChat() {
+            isExpanded = !isExpanded;
+            chatBody.style.display = isExpanded ? 'block' : 'none';
+            toggleIcon.className = isExpanded ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+            if (isExpanded && !currentChat) {
+                showRecentChats();
+            }
+            updateNotificationIndicator();
+        }
+
+        function showRecentChats() {
+            currentView = 'recent-chats';
+            recentChats.style.display = 'block';
+            friendList.style.display = 'none';
+            chatContent.style.display = 'none';
+            newChatBtn.style.display = 'block';
+            recentChats.innerHTML = chats.map(chat => {
+                const lastMessage = chat.messages[chat.messages.length - 1];
+                const unreadClass = !lastMessage.read && lastMessage.sender === 'other' ? 'fw-bold' : '';
+                return `
+                    <a href="#" class="list-group-item list-group-item-action chat-item" data-chat-id="${chat.id}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">${chat.name}</h5>
+                            <small class="text-muted">3 days ago</small>
+                        </div>
+                        <p class="mb-1 ${unreadClass}">${lastMessage.text}</p>
+                    </a>
+                `;
+            }).join('');
+            updateNotificationIndicator();
+        }
+
+        function showFriendList() {
+            currentView = 'friend-list';
+            recentChats.style.display = 'none';
+            friendList.style.display = 'block';
+            chatContent.style.display = 'none';
+            newChatBtn.style.display = 'none';
+            friendList.innerHTML = `
+                <div class="list-group-item bg-light">
+                    <i class="fas fa-arrow-left back-button me-2"></i>
+                    <span>New Chat</span>
+                </div>
+                ${friends.map(friend => `
+                    <a href="#" class="list-group-item list-group-item-action friend-item" data-friend-id="${friend.id}">
+                        <h5 class="mb-1">${friend.name}</h5>
+                    </a>
+                `).join('')}
+            `;
+        }
+
+        function renderMessages() {
+            if (!currentChat) return;
+            chatMessages.innerHTML = currentChat.messages.map(message => `
+                <div class="message ${message.sender}">
+                    ${message.text}
+                </div>
+            `).join('');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            markMessagesAsRead();
+        }
+
+        function addMessage(text, sender) {
+            if (!currentChat) return;
+            currentChat.messages.push({ id: currentChat.messages.length + 1, text, sender, read: sender === 'user' });
+            renderMessages();
+            if (!isExpanded) {
+                updateNotificationIndicator();
+            }
+        }
+
+        function openChat(chatId) {
+            currentChat = chats.find(chat => chat.id === chatId);
+            if (currentChat) {
+                currentView = 'chat';
+                recentChats.style.display = 'none';
+                friendList.style.display = 'none';
+                chatContent.style.display = 'block';
+                newChatBtn.style.display = 'none';
+                currentChatName.textContent = currentChat.name;
+                renderMessages();
+            }
+        }
+
+        function startNewChat(friendId) {
+            const friend = friends.find(f => f.id === friendId);
+            if (friend) {
+                const newChat = { id: chats.length + 1, name: friend.name, messages: [] };
+                chats.push(newChat);
+                currentChat = newChat;
+                openChat(newChat.id);
+            }
+        }
+
+        function markMessagesAsRead() {
+            if (currentChat) {
+                currentChat.messages.forEach(message => message.read = true);
+            }
+            updateNotificationIndicator();
+        }
+
+        function updateNotificationIndicator() {
+            const hasUnreadMessages = chats.some(chat => 
+                chat.messages.some(message => !message.read && message.sender === 'other')
+            );
+
+            notificationIndicator.style.display = hasUnreadMessages && !isExpanded ? 'block' : 'none';
+        }
+
+        chatHeader.addEventListener('click', toggleChat);
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const messageText = messageInput.value.trim();
+            if (messageText && currentChat) {
+                addMessage(messageText, 'user');
+                messageInput.value = '';
+            }
+        });
+
+        recentChats.addEventListener('click', (e) => {
+            e.preventDefault();
+            const chatItem = e.target.closest('.chat-item');
+            if (chatItem) {
+                const chatId = parseInt(chatItem.dataset.chatId);
+                openChat(chatId);
+            }
+        });
+
+        friendList.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (e.target.classList.contains('back-button')) {
+                showRecentChats();
+            } else {
+                const friendItem = e.target.closest('.friend-item');
+                if (friendItem) {
+                    const friendId = parseInt(friendItem.dataset.friendId);
+                    startNewChat(friendId);
+                }
+            }
+        });
+
+        backButton.addEventListener('click', () => {
+            currentChat = null;
+            showRecentChats();
+        });
+
+        newChatBtn.addEventListener('click', showFriendList);
+
+        // Simulate receiving a new message every 10 seconds
+        setInterval(() => {
+            const randomChatIndex = Math.floor(Math.random() * chats.length);
+            const randomChat = chats[randomChatIndex];
+            addMessage(`New message at ${new Date().toLocaleTimeString()}`, 'other');
+            if (currentChat !== randomChat || !isExpanded) {
+                showRecentChats();
+            }
+        }, 10000);
+
+        showRecentChats();
+        updateNotificationIndicator();
+    </script>
+</body>
+</html>
