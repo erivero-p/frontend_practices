@@ -10,7 +10,7 @@ const chatBody = document.getElementById('chat-body');
 
 /* buttons and icons*/
 const newChatBtn = document.getElementById('new-chat-btn');
-const backToRecents = document.getElementById('back-to-recents');
+// const backToRecents = document.querySelectorAll('.back-to-recents');
 const toggleIcon = document.getElementById('toggle-icon');
 
 /* utils */
@@ -76,8 +76,8 @@ function showFriendList() {
 //	updateNotificationIndicator();
 }
 
+const friendList = document.getElementById('friends-list');
 function renderFriendList() {
-    const friendList = document.getElementById('friends-list');
 
 	friendList.innerHTML = '';
     friends.forEach(friend => {
@@ -97,31 +97,38 @@ function renderFriendList() {
     });
 }
 
-backToRecents.addEventListener('click', showRecentChats);
+// backToRecents.addEventListener('click', showRecentChats);
+
+document.querySelectorAll('.back-to-recents').forEach(button => {
+    button.addEventListener('click', showRecentChats);
+});
 
 function showRecentChats() {
 
 	currentView = 'recent-chats';
-	recentChatsTab.style.display = 'block';
 	newChatTab.style.display = 'none';
+	chatTab.style.display = 'none';
+	recentChatsTab.style.display = 'block';
 	renderRecentChats();
 }
 
 function renderRecentChats() {
-	const recentChats = document.getElementById('recent-chats-list');
-	recentChats.innerHTML = chats.map(chat => {
-		const lastMessage = chat.messages[chat.messages.length - 1];
-		const unreadClass = !lastMessage.read && lastMessage.sender === 'other' ? 'fw-bold' : '';
-		return `
-			<a href="#" class="list-group-item list-group-item-action chat-item" data-chat-id="${chat.id}">
-				<div class="d-flex w-100 justify-content-between">
-					<h5 class="mb-1">${chat.name}</h5>
-					<small class="text-muted">3 days ago</small>
-				</div>
-				<p class="mb-1 ${unreadClass}">${lastMessage.text}</p>
-			</a>
-		`;
-	}).join('');
+    const recentChats = document.getElementById('recent-chats-list');
+    recentChats.innerHTML = chats.map(chat => {
+        const lastMessage = chat.messages[chat.messages.length - 1];
+        console.log(`Chat ID: ${chat.id}, Last Message Read: ${lastMessage.read}, Sender: ${lastMessage.sender}`);
+        const unreadClass = !lastMessage.read && lastMessage.sender === 'in' ? 'fw-bold' : '';
+        return `
+            <a href="#" class="list-group-item list-group-item-action chat-item" data-chat-id="${chat.id}">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">${chat.name}</h5>
+                    <small class="text-muted">3 days ago</small>
+                </div>
+                <p class="mb-1 ${unreadClass}">${lastMessage.text}</p>
+            </a>
+        `;
+    }).join('');
+    updateNotificationIndicator();
 }
 
 function openChat(chatId) {
@@ -150,6 +157,28 @@ function renderChat() {
 	//	markMessagesAsRead();	
 	}
 }
+
+function startNewChat(friendName) {
+	const chat = chats.find(chat => chat.name === friendName);
+	if (!chat) {
+		const newChat = { id: chats.length + 1, name: friendName, messages: [] };
+		chats.push(newChat);
+		currentChat = newChat;
+		openChat(newChat.id);
+	} else {
+		currentChat = chat;
+	}
+//	showRecentChats();
+}
+
+friendList.addEventListener('click', event => {
+	event.preventDefault();
+	const friendLink = event.target.closest('.list-group-item');
+	if (friendLink) {
+		const friendName = friendLink.querySelector('h6').textContent;
+		startNewChat(friendName);
+	}
+});
 
 recentChatsTab.addEventListener('click', event => {
 	event.preventDefault();
