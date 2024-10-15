@@ -116,7 +116,7 @@ function renderRecentChats() {
     const recentChats = document.getElementById('recent-chats-list');
     recentChats.innerHTML = chats.map(chat => {
         const lastMessage = chat.messages[chat.messages.length - 1];
-        console.log(`Chat ID: ${chat.id}, Last Message Read: ${lastMessage.read}, Sender: ${lastMessage.sender}`);
+//        console.log(`Chat ID: ${chat.id}, Last Message Read: ${lastMessage.read}, Sender: ${lastMessage.sender}`);
         const unreadClass = !lastMessage.read && lastMessage.sender === 'in' ? 'fw-bold' : '';
         return `
             <a href="#" class="list-group-item list-group-item-action chat-item" data-chat-id="${chat.id}">
@@ -141,6 +141,8 @@ function openChat(chatId) {
 		const chatName = document.getElementById('current-chat-name');
 		chatName.textContent = currentChat.name;
 		renderChat();
+		currentChat.messages.forEach(message => message.read = true); //this mark message as read
+		updateNotificationIndicator();
 	} 
 }
 
@@ -153,8 +155,8 @@ function renderChat() {
 				${message.text}
 			</div>
 		`).join('');
-		chatMessages.scrollTop = chatMessages.scrollHeight; //scrolls to the bottom ensuring the last message is visible
-	//	markMessagesAsRead();	
+		chatMessages.scrollTop = chatMessages.scrollHeight; //scrolls to the bottom ensuring the last message is visible	
+		//	markMessagesAsRead();	
 	}
 }
 
@@ -189,6 +191,40 @@ recentChatsTab.addEventListener('click', event => {
 });
 
 function updateNotificationIndicator() {
-	const notificationIndicator = document.getElementById('notification-indicator');
-	notificationIndicator.style.display =  hasUnreadMessages && isExpanded ? 'none' : 'block';
+    const notificationIndicator = document.getElementById('notification-indicator');
+    if (!notificationIndicator) {
+        console.error('Notification indicator element not found');
+        return;
+    }
+
+    let hasUnreadMessages = chats.some(chat => chat.messages.some(message => !message.read && message.sender === 'in'));
+    console.log(`Has Unread Messages: ${hasUnreadMessages}, Is Expanded: ${isExpanded}`);
+    
+	if (hasUnreadMessages && !isExpanded) {
+        notificationIndicator.style.display = 'block';
+    } else {
+        notificationIndicator.style.display = 'none';
+    }
 }
+
+function addMessage(text, sender) {
+	if (currentChat) {
+		const message = { id: currentChat.messages.length + 1, text, sender, read: true };
+		currentChat.messages.push(message);
+		renderChat();
+	}
+}
+
+const chatForm = document.getElementById('chat-form');
+
+chatForm.addEventListener('submit', event => {
+	event.preventDefault();
+	const messageInput = document.getElementById('message-input');
+	const messageText = messageInput.value.trim();
+	if (messageText) {
+		addMessage(messageText, 'out');
+		messageInput.value = '';
+	}
+});
+
+updateNotificationIndicator();
